@@ -1,0 +1,14 @@
+[uwsgi]
+socket = /tmp/uwsgi.storage-api.sock
+module = storage_api
+callable = app
+processes = 1
+master = 1
+chmod-socket = 777
+uid = www-data
+gid = www-data
+virtualenv = env
+logto = /var/log/phl-microsat/storage-api.uwsgi.logi
+daemonize = /var/log/phl-microsat/storage-api.uwsgi.log
+log-maxsize = 10000000
+pidfile = /tmp/storage-api.pid
