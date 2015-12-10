@@ -27,6 +27,14 @@ class StorageAPIScenesTestCase(unittest.TestCase):
         resp = self.app.post('/scenes', data={'scene_id': 'LC81110562015326LGN00', 'bundle_size': 724500})
         self.assertEqual(resp.status_code, 409)
 
+    def test_newSceneIdIsRequired(self):
+        resp = self.app.post('/scenes', data={'bundle_size': 724500})
+        self.assertEqual(resp.status_code, 422)
+
+    def test_newSceneBundleSizeIsRequired(self):
+        resp = self.app.post('/scenes', data={'scene_id': 'LC81110562015326LGN00'})
+        self.assertEqual(resp.status_code, 422)
+
     def test_getScenesEmpty(self):
         resp = self.app.get('/scenes')
         self.assertListEqual(json.loads(resp.data), [])

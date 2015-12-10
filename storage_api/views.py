@@ -30,11 +30,14 @@ def get_scene(scene_id):
 @app.route('/scenes', methods=['POST'])
 def create_scene():
 
-    scene = models.Scene(
-        scene_id=request.form.get('scene_id'),
-        bundle_size=request.form.get('bundle_size'),
-        bundle_url=request.form.get('bundle_url'),
-        bundle_hash=request.form.get('bundle_hash'))
+    try:
+        scene = models.Scene(
+            scene_id=request.form['scene_id'],
+            bundle_size=request.form['bundle_size'],
+            bundle_url=request.form.get('bundle_url'),
+            bundle_hash=request.form.get('bundle_hash'))
+    except KeyError:
+        return 'A required parameter is missing!', 422
 
     try:
         db.session.add(scene)
