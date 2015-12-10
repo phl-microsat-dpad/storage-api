@@ -14,3 +14,12 @@ class Scene(db.Model):
     def __repr__(self):
         return "<Scene(scene_id='%s' bundle_size='%s')>" % (
             self.scene_id, self.bundle_size)
+
+    @property
+    def serialize(self):
+        return {
+            'scene_id': self.scene_id,
+            'bundle_size': self.bundle_size,
+            'bundle_url': self.bundle_url,
+            'bundle_hash': self.bundle_hash
+        }
