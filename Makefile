@@ -10,11 +10,12 @@ logs:
 	sudo chown $(USER):$(USER) /var/log/phl-microsat/storage-api.uwsgi.log
 	sudo chown $(USER):$(USER) /var/log/phl-microsat/storage-api.uwsgi.logi
 
-uwsgi:
+deps:
 	sudo apt-get install build-essential python-dev
+	sudo apt-get install python-virtualenv
+	sudo apt-get install python-pip
 
-venv: uwsgi 
-	sudo apt-get install virtualenv
+venv: deps 
 	virtualenv env
 	env/bin/pip install -r setup/requirements.txt
 	env/bin/nosetests -v
