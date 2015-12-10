@@ -1,6 +1,8 @@
 import json
 from flask import request
+from sqlalchemy.exc import IntegrityError
 from storage_api import app, db, models
+
 
 @app.route('/')
 def index():
@@ -29,12 +31,17 @@ def get_scene(scene_id):
 def create_scene():
 
     scene = models.Scene(
-        scene_id=request.form['scene_id'],
-        bundle_size=request.form['bundle_size'],
-        bundle_url=request.form['bundle_url'])
+        scene_id=request.form.get('scene_id'),
+        bundle_size=request.form.get('bundle_size'),
+        bundle_url=request.form.get('bundle_url'),
+        bundle_hash=request.form.get('bundle_hash'))
 
-    db.session.add(scene)
-    db.session.commit()
+    try:
+        db.session.add(scene)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return "Scene already exists!", 409
 
     return json.dumps({'success': True})
 
@@ -52,4 +59,3 @@ def delete_scene(scene_id):
 @app.route('/products', methods=['GET'])
 def get_products():
     return json.dumps([])
-

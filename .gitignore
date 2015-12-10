@@ -59,3 +59,4 @@ docs/_build/
 target/
 
 app.db
+test.db

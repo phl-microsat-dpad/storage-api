@@ -1,7 +1,6 @@
 from storage_api import db
+from sqlalchemy import Column
 
-from sqlalchemy.ext.declarative import declarative_base 
-from sqlalchemy import Column, Integer, String
 
 class Scene(db.Model):
     __tablename__ = 'scene'
