@@ -1,11 +1,9 @@
 import os
 import json
-import storage_api
 import unittest
 
 from config import basedir
 from storage_api import app, db
-from storage_api import models
 
 
 class StorageAPITestCase(unittest.TestCase):
