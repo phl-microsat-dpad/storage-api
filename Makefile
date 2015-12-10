@@ -14,12 +14,13 @@ uwsgi:
 	sudo apt-get install build-essential python-dev
 
 venv: uwsgi 
+	sudo apt-get install virtualenv
 	virtualenv env
-	env/bin/pip install -r requirements.txt
+	env/bin/pip install -r setup/requirements.txt
 	env/bin/nosetests -v
 
 db:
 	env/bin/python create_db.py
 
 config:
-	cp -nvp uwsgi.config.ini.sample uwsgi.config.ini
+	cp -nvp setup/uwsgi.config.ini.sample uwsgi.config.ini

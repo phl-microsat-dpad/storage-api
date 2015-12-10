@@ -60,3 +60,5 @@ target/
 
 app.db
 test.db
+
+uwsgi.config.ini
