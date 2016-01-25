@@ -29,7 +29,6 @@ def get_scene(scene_id):
 
 @app.route('/scenes', methods=['POST'])
 def create_scene():
-
     try:
         scene = models.Scene(
             scene_id=request.form['scene_id'],
