@@ -5,10 +5,10 @@ from sqlalchemy import Column
 class Scene(db.Model):
     __tablename__ = 'scene'
 
-    scene_id = Column(db.String, primary_key=True)
+    scene_id = Column(db.String(255), primary_key=True)
     bundle_size = Column(db.Integer)
-    bundle_hash = Column(db.String)
-    bundle_url = Column(db.String)
+    bundle_hash = Column(db.String(255))
+    bundle_url = Column(db.Text)
 
     def __repr__(self):
         return "<Scene(scene_id='%s' bundle_size='%s')>" % (
