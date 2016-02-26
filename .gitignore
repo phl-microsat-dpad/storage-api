@@ -62,3 +62,4 @@ app.db
 test.db
 
 uwsgi.config.ini
+config.py
